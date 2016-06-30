@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Users</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <main>
+    <h1>Users</h1>
+
+    <form name="users">
+      <div class="textbox">
+        <input
+          type="text"
+          required
+          name="user-name"/>
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label>user name</label>
+      </div>
+
+    <div class="textbox">
+      <input type="text" required name="user-intro"/>
+      <span class="highlight"></span>
+      <span class="bar"></span>
+      <label>User Intro</label>
+    </div>
+
+
+    <input type="number" name="user-age" placeholder="age">
+    <select name="select">
+      <option value="female" selected>female</option>
+      <option value="male">male</option>
+    </select>
+    <button>submit</button>
+    </form>
+
+    <div class="content">
+      <ul class="user-list"></ul>
+    </div>
+  </main>
+<script src="app.js"></script>
+</body>
+</html>

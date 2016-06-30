@@ -1,0 +1,29 @@
+{
+  "name": "node-intro",
+  "version": "1.0.0",
+  "description": "this is a node project",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bencallis1/node-intro.git"
+  },
+  "keywords": [
+    "node"
+  ],
+  "author": "Ben Callis",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bencallis1/node-intro/issues"
+  },
+  "homepage": "https://github.com/bencallis1/node-intro#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "lodash": "^4.13.1",
+    "morgan": "^1.7.0"
+  }
+}
