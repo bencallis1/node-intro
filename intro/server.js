@@ -32,7 +32,7 @@ app.use(express.static('client'));
 
 // HTTP request logger middleware for node.js.
 
-app.use(morgan('combined'));
+app.use(morgan('dev'));
 
 
 // By default express doesnt know how to handle JSON so we need to handle that
@@ -50,7 +50,7 @@ app.use(bodyParser.json());
 // HTTP Verb ,POST,GET,PUT,DELETE
 // (CRUD Create,Read,Update,Destroy)
 
-// Create a user to make sure everyting is working
+// Create a user to make sure everything is working
 // As soon as we restart our server we will lose this data
 
 var users = [
@@ -63,6 +63,16 @@ var users = [
     }
 ];
 
+//app.param('id', function(req, res, next, id) {
+//    var user = _.find(users, {id: id})
+//    if (user) {
+//        req.user = user;
+//        next();
+//    } else {
+//        res.send();
+//    }
+//});
+
 var id = 0;
 
 var updateId = function(req, res, next) {
@@ -73,6 +83,30 @@ var updateId = function(req, res, next) {
     next();
 };
 
+var posts = [
+    {text:"this is so awesome I am writing awesome node stuff", id:"78"},
+    {text:"this is so awesome I am writing awesome node stuff", id:"71"}
+
+];
+
+// make route that gets all /posts respond all posts
+
+app.get('/posts', function(req,res) {
+    res.json(posts)
+});
+
+
+app.post('/posts', updateId, function(req,res) {
+    var post = req.body;
+    posts.push(post);
+    res.json(posts)
+});
+
+
+app.get('/posts/:id', function(req,res) {
+   var post = _.find(posts, {id:req.params.id});
+    res.json(post);
+});
 
 app.get('/users', function(req, res){
     res.json(users);
@@ -88,9 +122,9 @@ app.post('/users', updateId, function(req, res) {
 
 
 app.get('/users/:id', function(req, res){
-    var user = _.find(users, {id: req.params.id});
+    var user =  req.user;
     res.json(user || {});
-})
+});
 
 
 app.put('/users/:id', function(req, res) {
@@ -115,28 +149,4 @@ app.put('/users/:id', function(req, res) {
 
 app.listen(3000);
 
-
-
-
-
-
-
-
-
-
-
-//
-
-//
-//
-
-//
-//// If we pass err as the first argument then express will know that we are using error handling middleware
-//app.use(function(err,req,res,next) {
-//    console.log("here is the error");
-//    console.log(err);
-//});
-//
-//app.listen(3000);
-//console.log('on port 3000');
 
